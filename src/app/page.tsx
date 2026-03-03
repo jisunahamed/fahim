@@ -1,22 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import MobileNav from '@/components/MobileNav';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase-server';
 import { Profile, Skill } from '@/types';
 
-async function getProfile() {
-  const { data } = await supabase.from('profile').select('*').single();
-  return data as Profile;
-}
-
-async function getExpertise() {
-  const { data } = await supabase.from('skills').select('*').limit(2);
-  return data as Skill[];
-}
-
 export default async function Home() {
-  const profile = await getProfile();
-  const expertise = await getExpertise();
+  const supabase = await createClient();
+  const { data: profile } = await supabase.from('profile').select('*').single();
+  const { data: expertise } = await supabase.from('skills').select('*').limit(2);
 
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-20 lg:pb-0">

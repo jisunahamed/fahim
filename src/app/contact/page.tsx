@@ -1,23 +1,14 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase-server';
 import { Skill, SocialLink } from '@/types';
 import Link from 'next/link';
 
-async function getSkills() {
-    const { data } = await supabase.from('skills').select('*').order('level', { ascending: false });
-    return data as Skill[];
-}
-
-async function getSocialLinks() {
-    const { data } = await supabase.from('social_links').select('*');
-    return data as SocialLink[];
-}
-
 export default async function Contact() {
-    const skills = await getSkills();
-    const socialLinks = await getSocialLinks();
+    const supabase = await createClient();
+    const { data: skills } = await supabase.from('skills').select('*').order('level', { ascending: false });
+    const { data: socialLinks } = await supabase.from('social_links').select('*');
 
-    const automationSkills = skills?.filter(s => s.category === 'automation') || [];
-    const designSkills = skills?.filter(s => s.category === 'design') || [];
+    const automationSkills = skills?.filter((s: Skill) => s.category === 'automation') || [];
+    const designSkills = skills?.filter((s: Skill) => s.category === 'design') || [];
 
     return (
         <div className="relative flex min-h-screen w-full flex-col max-w-2xl mx-auto shadow-sm bg-white dark:bg-[#101722]/50 pb-24">
@@ -37,7 +28,7 @@ export default async function Contact() {
                         <h3 className="text-lg font-bold tracking-tight">Automation & AI</h3>
                     </div>
                     <div className="flex gap-2 flex-wrap">
-                        {automationSkills.length > 0 ? automationSkills.map(skill => (
+                        {automationSkills.length > 0 ? automationSkills.map((skill: Skill) => (
                             <div key={skill.id} className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-blue-500/10 px-4 border border-blue-500/20">
                                 <p className="text-sm font-semibold">{skill.name}</p>
                             </div>
@@ -58,7 +49,7 @@ export default async function Contact() {
                         <h3 className="text-lg font-bold tracking-tight">Design & Creative</h3>
                     </div>
                     <div className="flex gap-2 flex-wrap">
-                        {designSkills.length > 0 ? designSkills.map(skill => (
+                        {designSkills.length > 0 ? designSkills.map((skill: Skill) => (
                             <div key={skill.id} className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
                                 <p className="text-sm font-semibold">{skill.name}</p>
                             </div>
@@ -79,7 +70,7 @@ export default async function Contact() {
                             <h2 className="text-2xl font-bold leading-tight mb-4">Let’s Build Something Intelligent Together</h2>
                             <p className="text-slate-300 dark:text-slate-200 mb-8 max-w-md mx-auto">Ready to automate your workflow or create a stunning digital experience?</p>
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                {socialLinks?.length > 0 ? socialLinks.map(link => (
+                                {socialLinks && socialLinks.length > 0 ? socialLinks.map((link: SocialLink) => (
                                     <a key={link.id} href={link.url} target="_blank" className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">
                                         <span className="material-symbols-outlined text-[20px]">{link.icon_name || 'link'}</span>
                                         {link.platform}
@@ -123,7 +114,7 @@ export default async function Contact() {
                         </div>
                         <div>
                             <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Message</label>
-                            <textarea hidden={false} className="w-full bg-slate-100 dark:bg-slate-800/50 border-none rounded-lg focus:ring-2 focus:ring-blue-500 py-3 px-4 placeholder:text-slate-400" placeholder="Tell me about your project..." rows={4} required></textarea>
+                            <textarea className="w-full bg-slate-100 dark:bg-slate-800/50 border-none rounded-lg focus:ring-2 focus:ring-blue-500 py-3 px-4 placeholder:text-slate-400" placeholder="Tell me about your project..." rows={4} required></textarea>
                         </div>
                         <button className="w-full bg-slate-900 dark:bg-blue-500 text-white font-bold py-4 rounded-lg hover:opacity-90 transition-opacity" type="submit">
                             Send Message

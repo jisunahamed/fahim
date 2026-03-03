@@ -1,15 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase-server';
 import { Profile } from '@/types';
 
-async function getProfile() {
-    const { data } = await supabase.from('profile').select('*').single();
-    return data as Profile;
-}
-
 export default async function About() {
-    const profile = await getProfile();
+    const supabase = await createClient();
+    const { data: profile } = await supabase.from('profile').select('*').single();
 
     return (
         <div className="relative flex min-h-screen w-full flex-col bg-[#f5f7f8] dark:bg-[#101722] overflow-x-hidden pb-20 lg:pb-0">

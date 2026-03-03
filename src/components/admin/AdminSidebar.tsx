@@ -1,12 +1,15 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createBrowserClient } from '@supabase/ssr';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function AdminSidebar() {
     const pathname = usePathname();
-    const supabase = createClientComponentClient();
+    const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     const router = useRouter();
 
     const handleLogout = async () => {
@@ -36,8 +39,8 @@ export default function AdminSidebar() {
                         key={item.href}
                         href={item.href}
                         className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${pathname === item.href
-                                ? 'bg-blue-50 text-blue-600'
-                                : 'text-slate-500 hover:bg-slate-50'
+                            ? 'bg-blue-50 text-blue-600'
+                            : 'text-slate-500 hover:bg-slate-50'
                             }`}
                     >
                         <span className="material-symbols-outlined">{item.icon}</span>

@@ -1,15 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase-server';
 import { Project } from '@/types';
 
-async function getProjects() {
-    const { data } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
-    return data as Project[];
-}
-
 export default async function Portfolio() {
-    const projects = await getProjects() || [];
+    const supabase = await createClient();
+    const { data: projects } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
 
     return (
         <div className="relative flex min-h-screen flex-col bg-[#f5f7f8] dark:bg-[#101722] pb-20">
@@ -28,7 +24,7 @@ export default async function Portfolio() {
                 </div>
             </header>
 
-            {/* Filter Chips (Static for now, can be dynamic from tech_stack) */}
+            {/* Filter Chips */}
             <div className="flex gap-3 p-4 overflow-x-auto no-scrollbar scroll-smooth">
                 <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-blue-500 px-5 text-white shadow-sm transition-all hover:opacity-90">
                     <span className="text-sm font-semibold">All Projects</span>
@@ -43,7 +39,7 @@ export default async function Portfolio() {
             {/* Project Grid */}
             <main className="flex-1 p-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-                    {projects.length > 0 ? projects.map((project) => (
+                    {projects && projects.length > 0 ? projects.map((project: Project) => (
                         <Link key={project.id} href={`/projects/${project.slug}`} className="group flex flex-col bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                             <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
                                 {project.thumbnail_url ? (

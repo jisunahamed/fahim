@@ -1,21 +1,17 @@
-import { supabase } from '@/lib/supabase';
-import { Project, Skill, Profile } from '@/types';
+import { createClient } from '@/lib/supabase-server';
 import Link from 'next/link';
 
-async function getStats() {
-    const { count: projectCount } = await supabase.from('projects').count();
-    const { count: skillCount } = await supabase.from('skills').count();
+export default async function AdminDashboard() {
+    const supabase = await createClient();
+    const { count: projectCount } = await supabase.from('projects').select('*', { count: 'exact', head: true });
+    const { count: skillCount } = await supabase.from('skills').select('*', { count: 'exact', head: true });
     const { data: profile } = await supabase.from('profile').select('*').single();
 
-    return {
+    const stats = {
         projects: projectCount || 0,
         skills: skillCount || 0,
         profileStatus: profile ? 'Completed' : 'Empty'
     };
-}
-
-export default async function AdminDashboard() {
-    const stats = await getStats();
 
     const cards = [
         { title: 'Total Projects', value: stats.projects, icon: 'work', color: 'blue' },
@@ -33,7 +29,7 @@ export default async function AdminDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {cards.map((card) => (
                     <div key={card.title} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-6">
-                        <div className={`p-4 rounded-xl bg-${card.color}-500/10 text-${card.color}-600`}>
+                        <div className={`p-4 rounded-xl bg-blue-500/10 text-blue-600`}>
                             <span className="material-symbols-outlined text-4xl">{card.icon}</span>
                         </div>
                         <div>

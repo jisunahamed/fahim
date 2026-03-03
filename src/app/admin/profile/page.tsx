@@ -1,6 +1,6 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -10,7 +10,10 @@ export default function ProfileEditor() {
     const [profile, setProfile] = useState<Partial<Profile>>({});
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
-    const supabase = createClientComponentClient();
+    const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     const router = useRouter();
 
     useEffect(() => {
