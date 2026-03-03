@@ -7,16 +7,16 @@ export default function MobileNav() {
     const pathname = usePathname();
 
     const tabs = [
-        { id: 'home', label: 'Home', icon: 'home', href: '/' },
-        { id: 'portfolio', label: 'Work', icon: 'folder_open', href: '/portfolio' },
-        { id: 'about', label: 'Story', icon: 'lightbulb', href: '/about' },
-        { id: 'contact', label: 'Connect', icon: 'chat_bubble', href: '/contact' },
+        { id: 'portfolio', label: 'Projects', icon: 'folder_open', href: '/portfolio' },
+        { id: 'insights', label: 'Insights', icon: 'lightbulb', href: '#' },
+        { id: 'contact', label: 'Contact', icon: 'chat_bubble', href: '/contact' },
+        { id: 'profile', label: 'Profile', icon: 'person', href: '/' },
     ];
 
-    const activeTab = tabs.find((t) => (t.href === '/' ? pathname === '/' : pathname.startsWith(t.href)))?.id || 'home';
+    const activeTab = tabs.find((t) => (t.href === '/' ? pathname === '/' : pathname.startsWith(t.href)))?.id || 'profile';
 
     return (
-        <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200/50 dark:border-slate-800/50 bg-white/95 dark:bg-[#101722]/95 backdrop-blur-lg px-4 pb-6 pt-3 flex items-center justify-between lg:hidden transition-all duration-300">
+        <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#101722]/95 backdrop-blur-lg px-4 pb-6 pt-3 flex items-center justify-between lg:hidden transition-all duration-300">
             {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
