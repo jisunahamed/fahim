@@ -110,22 +110,6 @@ export default async function About() {
                     </div>
                 </div>
             </main>
-
-            {/* Bottom Navigation */}
-            <div className="sticky bottom-0 w-full flex gap-2 border-t border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pb-6 pt-2">
-                <Link className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-primary transition-colors" href="/">
-                    <span className="material-symbols-outlined">home</span>
-                </Link>
-                <Link className="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="/about">
-                    <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
-                </Link>
-                <Link className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-primary transition-colors" href="/portfolio">
-                    <span className="material-symbols-outlined">work</span>
-                </Link>
-                <Link className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-primary transition-colors" href="/contact">
-                    <span className="material-symbols-outlined">mail</span>
-                </Link>
-            </div>
         </div>
     );
 }

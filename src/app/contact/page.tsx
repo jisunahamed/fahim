@@ -120,27 +120,7 @@ export default function Contact() {
                 </section>
             </main>
 
-            {/* Bottom Navigation */}
-            <nav className="fixed bottom-0 left-0 right-0 z-20 flex justify-center pb-6 px-4">
-                <div className="flex items-center gap-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 px-6 py-3 rounded-full shadow-lg max-w-sm w-full">
-                    <Link className="flex flex-1 flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="/">
-                        <span className="material-symbols-outlined">home</span>
-                        <p className="text-[10px] font-bold uppercase tracking-tight">Home</p>
-                    </Link>
-                    <Link className="flex flex-1 flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="/portfolio">
-                        <span className="material-symbols-outlined">folder_open</span>
-                        <p className="text-[10px] font-bold uppercase tracking-tight">Work</p>
-                    </Link>
-                    <Link className="flex flex-1 flex-col items-center gap-1 text-primary" href="/contact">
-                        <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
-                        <p className="text-[10px] font-bold uppercase tracking-tight">Connect</p>
-                    </Link>
-                    <Link className="flex flex-1 flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
-                        <span className="material-symbols-outlined">settings</span>
-                        <p className="text-[10px] font-bold uppercase tracking-tight">Setup</p>
-                    </Link>
-                </div>
-            </nav>
+
         </div>
     );
 }

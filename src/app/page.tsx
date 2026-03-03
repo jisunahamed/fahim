@@ -146,25 +146,7 @@ export default async function Home() {
         </section>
       </main>
 
-      {/* Bottom Navigation Bar (Mobile) */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 glass-morphism border-t border-slate-200/50 dark:border-slate-800/50 px-6 py-3 pb-8 md:pb-4 flex justify-between items-center bg-white/50 dark:bg-slate-900/50">
-        <Link className="flex flex-col items-center gap-1 text-primary" href="/">
-          <span className="material-symbols-outlined fill-1">home</span>
-          <span className="text-[10px] font-bold">Home</span>
-        </Link>
-        <Link className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="/portfolio">
-          <span className="material-symbols-outlined">grid_view</span>
-          <span className="text-[10px] font-bold">Portfolio</span>
-        </Link>
-        <Link className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="/about">
-          <span className="material-symbols-outlined">construction</span>
-          <span className="text-[10px] font-bold">Services</span>
-        </Link>
-        <Link className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="/contact">
-          <span className="material-symbols-outlined">alternate_email</span>
-          <span className="text-[10px] font-bold">Contact</span>
-        </Link>
-      </nav>
+
     </div>
   );
 }

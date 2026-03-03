@@ -143,28 +143,9 @@ export default function Portfolio() {
                 </div>
             </main>
 
-            {/* Spacer for nav */}
-            <div className="h-20"></div>
 
-            {/* Bottom Navigation */}
-            <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-background-dark/95 backdrop-blur-lg px-4 pb-6 pt-3 flex gap-2">
-                <Link className="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/portfolio">
-                    <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>folder_open</span>
-                    <p className="text-[10px] font-bold uppercase tracking-wider">Projects</p>
-                </Link>
-                <Link className="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="/about">
-                    <span className="material-symbols-outlined text-[24px]">lightbulb</span>
-                    <p className="text-[10px] font-semibold uppercase tracking-wider">Insights</p>
-                </Link>
-                <Link className="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="/contact">
-                    <span className="material-symbols-outlined text-[24px]">chat_bubble</span>
-                    <p className="text-[10px] font-semibold uppercase tracking-wider">Contact</p>
-                </Link>
-                <Link className="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="/">
-                    <span className="material-symbols-outlined text-[24px]">person</span>
-                    <p className="text-[10px] font-semibold uppercase tracking-wider">Profile</p>
-                </Link>
-            </nav>
+
+
         </div>
     );
 }
