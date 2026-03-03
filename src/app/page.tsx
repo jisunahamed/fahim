@@ -28,7 +28,16 @@ export default async function Home() {
             {profile?.full_name || 'Fahim Faisal'}
           </span>
         </div>
-        <button className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8 pr-4">
+          <a href="#home" className="text-sm font-semibold text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors">Home</a>
+          <a href="#work" className="text-sm font-semibold text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors">Work</a>
+          <a href="#services" className="text-sm font-semibold text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors">Services</a>
+          <a href="#contact" className="text-sm font-semibold text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors">Contact</a>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button className="md:hidden p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
           <span className="material-symbols-outlined">menu</span>
         </button>
       </header>
@@ -64,14 +73,14 @@ export default async function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row w-full gap-4 mt-4">
-                <a href="#contact" className="flex-1 lg:flex-none">
-                  <button className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-blue-600 text-white font-bold text-base shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all active:scale-95">
+              <div className="flex flex-col sm:flex-row w-full gap-4 mt-6">
+                <a href="#contact" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-primary to-blue-600 text-white font-bold text-base shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all active:scale-95">
                     Connect With Me
                   </button>
                 </a>
-                <a href="#work" className="flex-1 lg:flex-none">
-                  <button className="w-full px-8 py-4 rounded-xl border-2 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-bold text-base hover:bg-slate-50 dark:hover:bg-slate-900 transition-all active:scale-95">
+                <a href="#work" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto px-8 py-3.5 rounded-xl border-2 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-bold text-base hover:bg-slate-50 dark:hover:bg-slate-900 transition-all active:scale-95">
                     View My Work
                   </button>
                 </a>
