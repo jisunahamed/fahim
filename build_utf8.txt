@@ -1,0 +1,63 @@
+﻿
+> fahim@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+
+node.exe : ΓÜá The 
+"middleware" file convention 
+is deprecated. Please use 
+"proxy" instead. Learn more: h
+ttps://nextjs.org/docs/message
+s/middleware-to-proxy
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" "C:\Use
+rs\User\AppData\Roaming\n ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: (ΓÜá The "  
+  middle...leware-to-proxy:   
+ String) [], RemoteExcepti    
+on
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 2.8s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/10) ...
+  Generating static pages using 11 workers (2/10) 
+Error occurred prerendering 
+page "/admin/login". Read 
+more: https://nextjs.org/docs/
+messages/prerender-error
+Error: @supabase/ssr: Your 
+project's URL and API key are 
+required to create a Supabase 
+client!
+
+Check your Supabase project's 
+API settings to find these 
+values
+
+https://supabase.com/dashboard
+/project/_/settings/api
+    at <unknown> (https://supa
+base.com/dashboard/project/_/s
+ettings/api)
+    at f (D:\fahim\.next\serve
+r\chunks\ssr\[root-of-the-serv
+er]__75eba41b._.js:1:2882) {
+  digest: '2538506422'
+}
+Export encountered an error 
+on /admin/login/page: 
+/admin/login, exiting the 
+build.
+Γ¿» Next.js build worker 
+exited with code: 1 and 
+signal: null
