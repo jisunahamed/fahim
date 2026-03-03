@@ -10,7 +10,7 @@ export default async function Home() {
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
 
       {/* Navigation Header */}
-      <header className="sticky top-0 z-50 glass-morphism border-b border-slate-200/50 dark:border-slate-800/50 px-4 py-3 flex items-center justify-between">
+      <header className="sticky top-0 z-50 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-slate-800/60 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="size-10 rounded-full overflow-hidden border-2 border-primary/20 relative">
             {profile?.hero_image_url ? (
