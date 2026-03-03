@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase-server';
 
@@ -14,11 +13,10 @@ export default async function Home() {
         <div className="flex items-center gap-3">
           <div className="size-10 rounded-full overflow-hidden border-2 border-primary/20 relative">
             {profile?.hero_image_url ? (
-              <Image
+              <img
                 src={profile.hero_image_url}
                 alt={profile.full_name || 'Fahim Faisal'}
-                fill
-                className="object-cover"
+                className="w-full h-full object-cover"
               />
             ) : (
               <div className="w-full h-full bg-slate-200 animate-pulse" />
@@ -94,11 +92,10 @@ export default async function Home() {
 
               <div className="relative z-10 size-64 md:size-80 rounded-full border-[8px] border-white dark:border-slate-900 shadow-2xl overflow-hidden bg-slate-100">
                 {profile?.hero_image_url ? (
-                  <Image
+                  <img
                     src={profile.hero_image_url}
                     alt="Professional portrait"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover"
                   />
                 ) : (
                   <div className="w-full h-full bg-slate-200" />
