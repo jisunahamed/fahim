@@ -35,6 +35,7 @@ export default function ProfileEditor() {
                 full_name: profile.full_name,
                 short_title: profile.short_title,
                 bio: profile.bio,
+                hero_image_url: profile.hero_image_url,
                 about_story: profile.about_story,
                 updated_at: new Date().toISOString(),
             })
@@ -80,6 +81,17 @@ export default function ProfileEditor() {
                             required
                         />
                     </div>
+                </div>
+
+                <div>
+                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Hero Image URL</label>
+                    <input
+                        type="url"
+                        value={profile.hero_image_url || ''}
+                        onChange={(e) => setProfile({ ...profile, hero_image_url: e.target.value })}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all mb-6"
+                        placeholder="https://example.com/image.jpg"
+                    />
                 </div>
 
                 <div>
