@@ -49,7 +49,7 @@ export default function MobileNav() {
 
     return (
         <nav className="fixed bottom-0 left-0 right-0 z-[100] flex justify-center pb-6 px-4 pointer-events-none">
-            <div className="flex items-center justify-between gap-2 bg-[#0B1120] border border-slate-800 px-6 py-2 rounded-full shadow-2xl max-w-sm w-full pointer-events-auto">
+            <div className="flex items-center justify-between gap-2 bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800/60 px-6 py-2 rounded-full shadow-2xl max-w-sm w-full pointer-events-auto">
                 {tabs.map((tab) => {
                     const isActive = activeTab === tab.id;
 
@@ -58,7 +58,7 @@ export default function MobileNav() {
                             key={tab.id}
                             href={tab.href}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`flex flex-1 flex-col items-center justify-center p-2 rounded-xl transition-all duration-300 ${isActive ? 'text-[#3B82F6]' : 'text-slate-400 hover:text-slate-200'
+                            className={`flex flex-1 flex-col items-center justify-center p-2 rounded-xl transition-all duration-300 ${isActive ? 'text-primary' : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
                                 }`}
                         >
                             <span
