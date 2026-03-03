@@ -1,12 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
-:root {
-  --primary: #3c83f6;
-  --background-light: #f5f7f8;
-  --background-dark: #101722;
+@theme {
+  --color-primary: #3c83f6;
+  --color-background-light: #f5f7f8;
+  --color-background-dark: #101722;
+  --font-display: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
 }
 
 body {

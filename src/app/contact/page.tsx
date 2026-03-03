@@ -1,48 +1,44 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import MobileNav from '@/components/MobileNav';
-import { createClient } from '@/lib/supabase-server';
-import { Skill, SocialLink } from '@/types';
 
-export default async function Contact() {
-    const supabase = await createClient();
-    const { data: skills } = await supabase.from('skills').select('*').order('level', { ascending: false });
-    const { data: socialLinks } = await supabase.from('social_links').select('*');
-
-    const automationSkills = skills?.filter((s: Skill) => s.category === 'automation') || [];
-    const designSkills = skills?.filter((s: Skill) => s.category === 'design') || [];
-
+export default function Contact() {
     return (
-        <div className="relative flex min-h-screen w-full flex-col max-w-2xl mx-auto bg-white dark:bg-background-dark/50 shadow-sm pb-24 lg:pb-0 transition-colors duration-300">
+        <div className="relative flex min-h-screen w-full flex-col max-w-2xl mx-auto shadow-sm bg-white dark:bg-background-dark/50 text-slate-900 dark:text-slate-100 font-display">
             {/* Header */}
-            <header className="flex items-center px-4 py-6 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10 border-b border-slate-200/50 dark:border-slate-800/50">
-                <Link href="/" className="text-slate-900 dark:text-slate-100 flex size-10 items-center justify-center rounded-full bg-slate-200/50 dark:bg-slate-800/50">
+            <header className="flex items-center px-4 py-6 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+                <Link href="/" className="text-slate-900 dark:text-slate-100 flex size-10 items-center justify-center rounded-full bg-slate-200/50 dark:bg-slate-800/50 cursor-pointer">
                     <span className="material-symbols-outlined">arrow_back</span>
                 </Link>
-                <h2 className="text-lg font-bold tracking-tight flex-1 text-center pr-10">Skills & Connect</h2>
+                <h2 className="text-lg font-bold tracking-tight flex-1 text-center pr-10">Skills &amp; Connect</h2>
             </header>
 
-            <main className="flex-1 px-4">
+            <main className="flex-1 px-4 pb-24">
                 {/* Automation Section */}
                 <section className="mt-4">
                     <div className="flex items-center gap-2 mb-4">
                         <span className="material-symbols-outlined text-primary">auto_awesome</span>
-                        <h3 className="text-lg font-bold tracking-tight">Automation & AI</h3>
+                        <h3 className="text-lg font-bold tracking-tight">Automation &amp; AI</h3>
                     </div>
                     <div className="flex gap-2 flex-wrap">
-                        {automationSkills.length > 0 ? automationSkills.map((skill: Skill) => (
-                            <div key={skill.id} className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-primary/10 px-4 border border-primary/20">
-                                <span className="material-symbols-outlined text-primary text-[20px]">bolt</span>
-                                <p className="text-sm font-semibold">{skill.name}</p>
-                            </div>
-                        )) : (
-                            ['n8n', 'OpenAI', 'Python', 'Zapier', 'Airtable'].map(s => (
-                                <div key={s} className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-primary/10 px-4 border border-primary/20">
-                                    <span className="material-symbols-outlined text-primary text-[20px]">hub</span>
-                                    <p className="text-sm font-semibold">{s}</p>
-                                </div>
-                            ))
-                        )}
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-primary/10 px-4 border border-primary/20">
+                            <span className="material-symbols-outlined text-primary text-[20px]">hub</span>
+                            <p className="text-sm font-semibold">n8n</p>
+                        </div>
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-primary/10 px-4 border border-primary/20">
+                            <span className="material-symbols-outlined text-primary text-[20px]">psychology</span>
+                            <p className="text-sm font-semibold">OpenAI</p>
+                        </div>
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-primary/10 px-4 border border-primary/20">
+                            <span className="material-symbols-outlined text-primary text-[20px]">code</span>
+                            <p className="text-sm font-semibold">Python</p>
+                        </div>
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-primary/10 px-4 border border-primary/20">
+                            <span className="material-symbols-outlined text-primary text-[20px]">bolt</span>
+                            <p className="text-sm font-semibold">Zapier</p>
+                        </div>
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-primary/10 px-4 border border-primary/20">
+                            <span className="material-symbols-outlined text-primary text-[20px]">database</span>
+                            <p className="text-sm font-semibold">Airtable</p>
+                        </div>
                     </div>
                 </section>
 
@@ -50,22 +46,25 @@ export default async function Contact() {
                 <section className="mt-10">
                     <div className="flex items-center gap-2 mb-4">
                         <span className="material-symbols-outlined text-primary">palette</span>
-                        <h3 className="text-lg font-bold tracking-tight">Design & Creative</h3>
+                        <h3 className="text-lg font-bold tracking-tight">Design &amp; Creative</h3>
                     </div>
                     <div className="flex gap-2 flex-wrap">
-                        {designSkills.length > 0 ? designSkills.map((skill: Skill) => (
-                            <div key={skill.id} className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
-                                <span className="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[20px]">brush</span>
-                                <p className="text-sm font-semibold">{skill.name}</p>
-                            </div>
-                        )) : (
-                            ['Photoshop', 'Illustrator', 'Figma', 'After Effects'].map(s => (
-                                <div key={s} className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
-                                    <span className="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[20px]">draw</span>
-                                    <p className="text-sm font-semibold">{s}</p>
-                                </div>
-                            ))
-                        )}
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
+                            <span className="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[20px]">brush</span>
+                            <p className="text-sm font-semibold">Photoshop</p>
+                        </div>
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
+                            <span className="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[20px]">draw</span>
+                            <p className="text-sm font-semibold">Illustrator</p>
+                        </div>
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
+                            <span className="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[20px]">grid_view</span>
+                            <p className="text-sm font-semibold">Figma</p>
+                        </div>
+                        <div className="flex h-10 items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
+                            <span className="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[20px]">movie_filter</span>
+                            <p className="text-sm font-semibold">After Effects</p>
+                        </div>
                     </div>
                 </section>
 
@@ -73,32 +72,24 @@ export default async function Contact() {
                 <section className="mt-16 text-center">
                     <div className="relative overflow-hidden rounded-xl bg-slate-900 dark:bg-primary/20 p-8 text-white">
                         <div className="relative z-10">
-                            <h2 className="text-2xl font-bold leading-tight mb-4">Let’s Build Something Intelligent Together</h2>
+                            <h2 className="text-2xl font-bold leading-tight mb-4">Let&apos;s Build Something Intelligent Together</h2>
                             <p className="text-slate-300 dark:text-slate-200 mb-8 max-w-md mx-auto">Ready to automate your workflow or create a stunning digital experience?</p>
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                {socialLinks && socialLinks.length > 0 ? socialLinks.map((link: SocialLink) => (
-                                    <a key={link.id} href={link.url} target="_blank" className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-colors">
-                                        <span className="material-symbols-outlined text-[20px]">{link.icon_name || 'link'}</span>
-                                        {link.platform}
-                                    </a>
-                                )) : (
-                                    <>
-                                        <a className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-colors" href="#">
-                                            <span className="material-symbols-outlined text-[20px]">mail</span>
-                                            Email Me
-                                        </a>
-                                        <a className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-4 rounded-lg backdrop-blur-sm transition-colors" href="#">
-                                            <span className="material-symbols-outlined text-[20px]">share</span>
-                                            LinkedIn
-                                        </a>
-                                        <a className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-4 rounded-lg backdrop-blur-sm transition-colors" href="#">
-                                            <span className="material-symbols-outlined text-[20px]">calendar_today</span>
-                                            Book a Call
-                                        </a>
-                                    </>
-                                )}
+                                <a className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-colors" href="#">
+                                    <span className="material-symbols-outlined text-[20px]">mail</span>
+                                    Email Me
+                                </a>
+                                <a className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-4 rounded-lg backdrop-blur-sm transition-colors" href="#">
+                                    <span className="material-symbols-outlined text-[20px]">share</span>
+                                    LinkedIn
+                                </a>
+                                <a className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-4 rounded-lg backdrop-blur-sm transition-colors" href="#">
+                                    <span className="material-symbols-outlined text-[20px]">calendar_today</span>
+                                    Book a Call
+                                </a>
                             </div>
                         </div>
+                        {/* Decorative Background element */}
                         <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-primary/30 rounded-full blur-3xl"></div>
                         <div className="absolute -left-10 -top-10 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
                     </div>
@@ -106,21 +97,21 @@ export default async function Contact() {
 
                 {/* Contact Form */}
                 <section className="mt-12 mb-8">
-                    <h3 className="text-lg font-bold mb-6 text-slate-900 dark:text-white">Quick Message</h3>
+                    <h3 className="text-lg font-bold mb-6">Quick Message</h3>
                     <form className="space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Name</label>
-                                <input className="w-full bg-slate-100 dark:bg-slate-800/50 border-none rounded-lg focus:ring-2 focus:ring-primary py-3 px-4 placeholder:text-slate-400 transition-all dark:text-white" placeholder="John Doe" type="text" />
+                                <input className="w-full bg-slate-100 dark:bg-slate-800/50 border-none rounded-lg focus:ring-2 focus:ring-primary py-3 px-4 placeholder:text-slate-400" placeholder="John Doe" type="text" />
                             </div>
                             <div>
                                 <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Email</label>
-                                <input className="w-full bg-slate-100 dark:bg-slate-800/50 border-none rounded-lg focus:ring-2 focus:ring-primary py-3 px-4 placeholder:text-slate-400 transition-all dark:text-white" placeholder="john@example.com" type="email" />
+                                <input className="w-full bg-slate-100 dark:bg-slate-800/50 border-none rounded-lg focus:ring-2 focus:ring-primary py-3 px-4 placeholder:text-slate-400" placeholder="john@example.com" type="email" />
                             </div>
                         </div>
                         <div>
                             <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Message</label>
-                            <textarea className="w-full bg-slate-100 dark:bg-slate-800/50 border-none rounded-lg focus:ring-2 focus:ring-primary py-3 px-4 placeholder:text-slate-400 transition-all dark:text-white" placeholder="Tell me about your project..." rows={4}></textarea>
+                            <textarea className="w-full bg-slate-100 dark:bg-slate-800/50 border-none rounded-lg focus:ring-2 focus:ring-primary py-3 px-4 placeholder:text-slate-400" placeholder="Tell me about your project..." rows={4}></textarea>
                         </div>
                         <button className="w-full bg-slate-900 dark:bg-primary text-white font-bold py-4 rounded-lg hover:opacity-90 transition-opacity" type="submit">
                             Send Message
@@ -129,7 +120,27 @@ export default async function Contact() {
                 </section>
             </main>
 
-            <MobileNav />
+            {/* Bottom Navigation */}
+            <nav className="fixed bottom-0 left-0 right-0 z-20 flex justify-center pb-6 px-4">
+                <div className="flex items-center gap-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 px-6 py-3 rounded-full shadow-lg max-w-sm w-full">
+                    <Link className="flex flex-1 flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="/">
+                        <span className="material-symbols-outlined">home</span>
+                        <p className="text-[10px] font-bold uppercase tracking-tight">Home</p>
+                    </Link>
+                    <Link className="flex flex-1 flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="/portfolio">
+                        <span className="material-symbols-outlined">folder_open</span>
+                        <p className="text-[10px] font-bold uppercase tracking-tight">Work</p>
+                    </Link>
+                    <Link className="flex flex-1 flex-col items-center gap-1 text-primary" href="/contact">
+                        <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
+                        <p className="text-[10px] font-bold uppercase tracking-tight">Connect</p>
+                    </Link>
+                    <Link className="flex flex-1 flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+                        <span className="material-symbols-outlined">settings</span>
+                        <p className="text-[10px] font-bold uppercase tracking-tight">Setup</p>
+                    </Link>
+                </div>
+            </nav>
         </div>
     );
 }
