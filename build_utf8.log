@@ -1,0 +1,58 @@
+﻿
+> fahim@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+node.exe : 
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" "C:\Use
+rs\User\AppData\Roaming\n ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: (:String)   
+  [], RemoteException
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 
+> Build error occurred
+Error: Turbopack build failed 
+with 1 errors:
+./src/proxy.ts
+Proxy is missing expected 
+function export name
+This function is what Next.js 
+runs for every request 
+handled by this proxy 
+(previously called 
+middleware).
+
+Why this happens:
+- You are migrating from 
+`middleware` to `proxy`, but 
+haven't updated the exported 
+function.
+- The file exists but doesn't 
+export a function.
+- The export is not a 
+function (e.g., an object or 
+constant).
+- There's a syntax error 
+preventing the export from 
+being recognized.
+
+To fix it:
+- Ensure this file has either 
+a default or "proxy" function 
+export.
+
+Learn more: https://nextjs.org
+/docs/messages/middleware-to-p
+roxy
+
+
+    at ignore-listed frames
