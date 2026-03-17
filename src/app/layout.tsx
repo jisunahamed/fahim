@@ -29,6 +29,25 @@ export default function RootLayout({
         <Toaster position="top-center" />
         {children}
         <MobileNav />
+        {/* Start of Widjet (widjet.com) code */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.__wj = window.__wj || {};
+              window.__wj.widgetId = "cc30e6d2-a122-44c0-a779-34e9aad87b79";
+              window.__wj.product_name = "widjet";
+              ;(function(w,d,s){
+                var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s);
+                j.async=true;
+                j.src="https://jqvcafbrccpmygiihyry.supabase.co/functions/v1/widget-loader";
+                f.parentNode.insertBefore(j,f);
+              })(window,document,'script');
+            `,
+          }}
+        />
+        <noscript>Enable JavaScript to use the widget powered by Widjet</noscript>
+        {/* End of Widjet code */}
       </body>
     </html>
   );
